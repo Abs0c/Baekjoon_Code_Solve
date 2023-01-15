@@ -6,11 +6,12 @@ public class Main {
     public static void main(String[] args) throws NumberFormatException, IOException {
         int n = Integer.parseInt(br.readLine());
         int k = Integer.parseInt(br.readLine());
+        
         //센서간의 거리를 내림차순 우선순위큐에 저장함
         PriorityQueue<Integer> distanceArr = new PriorityQueue<>(Collections.reverseOrder());
         int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        //병합 정렬을 이용하여 정렬을 하고(정렬을 통해서 일직선상에 존재한다는 상황을 구현함)
+        //정렬을 통해서 일직선상에 존재한다는 상황을 표현함
         Arrays.sort(arr);
         for (int i = 0; i < n-1; i++){
             int temp = arr[i+1] - arr[i];
@@ -28,9 +29,6 @@ public class Main {
                 distanceArr.add(temp);
                 distanceArr.poll();
             }
-            // else if (distanceArr.size() > n - k){
-            //     distanceArr.poll();
-            // }
         }
         
         int sum = 0;
